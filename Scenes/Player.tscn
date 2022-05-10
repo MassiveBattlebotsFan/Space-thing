@@ -8,7 +8,7 @@
 script/source = "extends KinematicBody
 
 const SPEED = 5
-const GRAVITY = 9.8
+const GRAVITY = 2
 const SPIN = 0.025
 
 var direction = Vector3()
@@ -54,6 +54,7 @@ points = PoolVector3Array( -0.5, 0, 0, -0.490407, 0, -0.097592, -0.490407, 0, 0.
 script = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+layers = 2
 mesh = ExtResource( 1 )
 material/0 = null
 
@@ -65,7 +66,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.641, 0 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="Camera_pivot"]
-near = 0.6
+cull_mask = 1048573
 
 [node name="RayCast" type="RayCast" parent="Camera_pivot"]
 enabled = true
