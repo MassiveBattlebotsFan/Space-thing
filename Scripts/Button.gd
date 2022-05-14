@@ -4,8 +4,16 @@ export var state = -1
 export var isToggle = true
 export var buttonReturnDelay = 0.5
 export var isPlayerResettable = true
+export var startButtonPressed = false
 
 var locked = false
+
+onready var anim = $Button_Collider/Button_Anim
+
+func _ready():
+	if startButtonPressed:
+		state = 1
+		anim.play("Button_anim", -1, 1000)
 
 func reset():
 	if state > 0:
@@ -24,13 +32,13 @@ func clicked():
 	locked = true
 	state *= -1
 	if state > 0:
-		$CollisionShape/Button_anim.play("Button_anim")
+		anim.play("Button_anim")
 		if not isToggle:
 			yield(get_tree().create_timer(buttonReturnDelay), "timeout")
-			$CollisionShape/Button_anim.play_backwards("Button_anim")
+			anim.play_backwards("Button_anim")
 			state *= -1
 	else:
-		$CollisionShape/Button_anim.play_backwards("Button_anim")
+		anim.play_backwards("Button_anim")
 	locked = false
-	print(state)
+	print("Button with name "+get_name()+" state:"+str(state))
 	

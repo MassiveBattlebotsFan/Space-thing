@@ -22,13 +22,13 @@ tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, -0
 collision_layer = 3
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Button_Collider" type="CollisionShape" parent="."]
 shape = SubResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+[node name="Button_Mesh" type="MeshInstance" parent="Button_Collider"]
 mesh = ExtResource( 1 )
 skeleton = NodePath("../..")
 material/0 = null
 
-[node name="Button_anim" type="AnimationPlayer" parent="CollisionShape"]
+[node name="Button_Anim" type="AnimationPlayer" parent="Button_Collider"]
 anims/Button_anim = SubResource( 1 )

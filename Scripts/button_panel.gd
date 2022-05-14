@@ -1,22 +1,30 @@
-extends MeshInstance
+extends StaticBody
 
-var activeButton = 1
+export var activeButton = 0
+
+onready var buttonPanel = $Button_Panel
+onready var buttons = buttonPanel.get_children()
+onready var numberOfButtons = len(buttons)
+
+const rooms = [0, 1, null]
+
+signal room_changed(name)
+
+func _ready():
+	print("Number of buttons: " + str(numberOfButtons))
+	print(buttons)
 
 func reset_other_buttons(exclude):
-	if exclude != 1:
-		$Button.reset()
-	if exclude != 2:
-		$Button2.reset()
-	if exclude != 3:
-		$Button3.reset()
+	for i in range(numberOfButtons):
+		if i != exclude:
+			buttons[i].reset()
 
-func _process(delta):
-	if $Button.state > 0 and activeButton != 1:
-		reset_other_buttons(1)
-		activeButton = 1
-	if $Button2.state > 0 and activeButton != 2:
-		reset_other_buttons(2)
-		activeButton = 2
-	if $Button3.state > 0 and activeButton != 3:
-		reset_other_buttons(3)
-		activeButton = 3
+func _process(_delta):
+	for i in range(numberOfButtons):
+		if buttons[i].state > 0 and i != activeButton:
+			print("Button toggled: " + str(i))
+			if rooms[i] != null:
+				emit_signal("room_changed", rooms[i])
+			activeButton = i
+			reset_other_buttons(i)
+			break
