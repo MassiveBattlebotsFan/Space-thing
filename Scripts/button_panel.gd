@@ -19,9 +19,9 @@ func reset_other_buttons(exclude):
 		if i != exclude:
 			buttons[i].reset()
 
-func _process(_delta):
+func _on_button_toggled(_state, _name):
 	for i in range(numberOfButtons):
-		if buttons[i].state > 0 and i != activeButton:
+		if buttons[i].state and i != activeButton:
 			print("Button toggled: " + str(i))
 			if rooms[i] != null:
 				emit_signal("room_changed", rooms[i])

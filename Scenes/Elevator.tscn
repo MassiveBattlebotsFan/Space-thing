@@ -46,3 +46,7 @@ isPlayerResettable = false
 [node name="Button_Panel_Collider" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -2.25655 )
 shape = SubResource( 4 )
+
+[connection signal="button_state_toggled" from="Button_Panel/Button" to="." method="_on_button_toggled"]
+[connection signal="button_state_toggled" from="Button_Panel/Button2" to="." method="_on_button_toggled"]
+[connection signal="button_state_toggled" from="Button_Panel/Button3" to="." method="_on_button_toggled"]

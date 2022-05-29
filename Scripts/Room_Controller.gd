@@ -9,8 +9,10 @@ func _ready():
 	currentRoom.show()
 
 func switch_main_room(name):
+	if name > len(rooms)-1:
+		return
 	currentRoom.hide()
-	currentRoom = get_child(name) #placeholder
+	currentRoom = rooms[name] #placeholder
 	currentRoom.show()
 	pass
 
